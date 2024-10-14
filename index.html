@@ -16,6 +16,45 @@
 
 <body>
   <h3>学习专用</h3>
+  <template>
+  <div>
+    <p>{{ message }}</p>
+  </div>
+</template>
+ 
+<script>
+export default {
+  data() {
+    return {
+      message: 'Hello Vue!'
+    }
+  },
+  beforeCreate() {
+    console.log('beforeCreate: 实例完全被创建出来之前，data 和 methods 等都没有初始化');
+  },
+  created() {
+    console.log('created: 实例创建完成，属性已经绑定，但DOM还未生成，$el属性不存在');
+  },
+  beforeMount() {
+    console.log('beforeMount: 模板编译之前，此时已经完成了v-if的判断');
+  },
+  mounted() {
+    console.log('mounted: 模板编译完成，此时DOM已经生成，可以访问到DOM元素');
+  },
+  beforeUpdate() {
+    console.log('beforeUpdate: 数据更新时调用，此时data中的状态值是最新的，但是页面上显示的数据还是旧的');
+  },
+  updated() {
+    console.log('updated: 数据更新完成后调用，此时data中的状态值和页面上显示的数据都是最新的');
+  },
+  beforeDestroy() {
+    console.log('beforeDestroy: 实例销毁之前调用，此时实例仍然完全可用');
+  },
+  destroyed() {
+    console.log('destroyed: 实例销毁后调用，此时所有的事件监听器会被移除，所有的子实例也会被销毁');
+  }
+}
+</script>
 </body>
 
 </html>
